@@ -2,8 +2,8 @@ version: "3"
 services:
   node:
     image: "node:lts-alpine"
-    user: "node"
-    working_dir: /home/node/app
+    working_dir: /app
+    network_mode: bridge
     volumes:
       - /docker_data/pairdrop/app:/home/node/app
     command: ash -c "npm i && npm run start:prod"
