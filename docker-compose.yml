@@ -5,7 +5,7 @@ services:
     user: "node"
     working_dir: /home/node/app
     volumes:
-      - ./:/home/node/app
+      - /docker_data/pairdrop/app:/home/node/app
     command: ash -c "npm i && npm run start:prod"
     restart: unless-stopped
     ports:
