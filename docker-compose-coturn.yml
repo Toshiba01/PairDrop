@@ -2,18 +2,18 @@ version: "3"
 services:
   node:
     image: "node:lts-alpine"
-    user: "node"
-    working_dir: /home/node/app
+    working_dir: /app
+    network_mode: "bridge"
     volumes:
-      - ./:/home/node/app
+      - /docker_data/pairdrop/app:/home/node/app
     command: ash -c "npm i && npm run start:prod"
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "7110:3000"
   coturn_server:
     image: "coturn/coturn"
     restart: always
-    network_mode: "host"
+    network_mode: "bridge"
     volumes:
       - ./turnserver.conf:/etc/coturn/turnserver.conf
     #you need to copy turnserver_example.conf to turnserver.conf and specify domain, IP address, user and password
